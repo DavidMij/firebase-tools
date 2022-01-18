@@ -71,6 +71,7 @@ export interface FunctionsEmulatorArgs {
   account?: Account;
   port?: number;
   host?: string;
+  timeout?: number;
   quiet?: boolean;
   disabledRuntimeFeatures?: FunctionsRuntimeFeatures;
   debugPort?: number;
@@ -664,11 +665,13 @@ export class FunctionsEmulator implements EmulatorInstance {
   getInfo(): EmulatorInfo {
     const host = this.args.host || Constants.getDefaultHost(Emulators.FUNCTIONS);
     const port = this.args.port || Constants.getDefaultPort(Emulators.FUNCTIONS);
+    const timeout = this.args.timeout || Constants.getDefaultTimeout(Emulators.FUNCTIONS);
 
     return {
       name: this.getName(),
       host,
       port,
+      timeout,
     };
   }
 
